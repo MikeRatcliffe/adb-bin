@@ -1,0 +1,25 @@
+#!/bin/sh
+mkdir tmp
+cd tmp
+
+wget https://dl.google.com/android/repository/platform-tools-latest-windows.zip
+7zz x platform-tools-latest-windows.zip -owin
+cp win/platform-tools/adb.exe ../win/ia32/adb.exe
+cp win/platform-tools/AdbWinApi.dll ../win/ia32/AdbWinApi.dll
+cp win/platform-tools/AdbWinUsbApi.dll ../win/ia32/AdbWinUsbApi.dll
+mv win/platform-tools/adb.exe ../win/x64/adb.exe
+mv win/platform-tools/AdbWinApi.dll ../win/x64/AdbWinApi.dll
+mv win/platform-tools/AdbWinUsbApi.dll ../win/x64/AdbWinUsbApi.dll
+
+wget https://dl.google.com/android/repository/platform-tools-latest-darwin.zip
+7zz x platform-tools-latest-darwin.zip -omac
+cp mac/platform-tools/adb ../mac/ia32/adb
+mv mac/platform-tools/adb ../mac/x64/adb
+
+wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+7zz x platform-tools-latest-linux.zip -olinux
+cp linux/platform-tools/adb ../linux/ia32/adb
+mv linux/platform-tools/adb ../linux/x64/adb
+
+cd ..
+rm -rf tmp
